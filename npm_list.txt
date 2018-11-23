@@ -1,0 +1,11 @@
+# dep
+# express framework
+# sequelize orm
+# postgre and hstore (like dictionary key-value pairs)
+npm install \
+express \
+sequelize \
+pg pg-hstore \
+
+# dev dep
+npm install -D
