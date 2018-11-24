@@ -1,8 +1,8 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
-  res.send('express framework')
+app.get('/api/', function (req, res) {
+  res.json({ name: "satoshi" });
 })
 
 app.listen(3000)
