@@ -1,0 +1,28 @@
+{
+  "name": "rest_api_vocabs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RESTful API for vocabs web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stsiwo/rest_api_vocabs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stsiwo/rest_api_vocabs/issues"
+  },
+  "homepage": "https://github.com/stsiwo/rest_api_vocabs#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^7.6.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.41.2"
+  },
+  "devDependencies": {}
+}
