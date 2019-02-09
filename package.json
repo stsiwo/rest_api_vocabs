@@ -5,7 +5,13 @@
   "description": "RESTful API for vocabs web application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "start": "nodemon lib/test.js",
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
   },
   "repository": {
     "type": "git",
@@ -19,10 +25,26 @@
   },
   "homepage": "https://github.com/stsiwo/rest_api_vocabs#readme",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "pg": "^7.6.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.41.2"
+    "sequelize": "^4.41.2",
+    "typescript": "^3.3.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/jest": "^24.0.0",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "nodemon": "^1.18.10",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^8.0.2"
+  }
 }
