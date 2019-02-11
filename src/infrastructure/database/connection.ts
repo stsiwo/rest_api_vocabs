@@ -1,25 +1,11 @@
-import Sequelize from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 
-const sequelize = new Sequelize('vocabs', 'postgres', 'sts1551iwo', {
-  host: 'localhost',
+const sequelize =  new Sequelize({
+  database: 'vocabs',
   dialect: 'postgres',
-  operatorsAliases: false,
-
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-
+  username: 'postgres',
+  password: 'sts1551iwo',
+  modelPaths: [__dirname + '/infrastructure/Entities']
 });
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(( err: string ) => {
-    console.error('Unable to connect to the database:', err);
-  });
 
 export default sequelize;

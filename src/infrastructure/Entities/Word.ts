@@ -1,39 +1,39 @@
-import sequelize from '../database/connection';
+import { Model, Column, Table, CreatedAt, UpdatedAt, IsUUID, PrimaryKey, AllowNull, Default, HasMany, BelongsTo, ForeignKey } from "sequelize-typescript";
 import Sequelize from 'sequelize';
+import { User } from './User';
+import { Def } from './Def';
 
 /**
  * Word Entity
- *
  **/
-interface WordAttributeType {
-  id: string;
+@Table
+export class Word extends Model<Word> {
+
+  @IsUUID(4)
+  @PrimaryKey
+  @Default(Sequelize.UUIDV4)
+  @Column(Sequelize.STRING)
+  id?: string;
+
+  @AllowNull(false)
+  @Column(Sequelize.STRING)
   name: string;
-   
+
+  @ForeignKey(() => User)
+  @Column(Sequelize.STRING)
+  userId: string;
+
+  @BelongsTo(() => User)
+  user: User;
+
+  @HasMany(() => Def)
+  defs: Def[];
+
+  @CreatedAt
+  creationDate: Date;
+
+  @UpdatedAt
+  updatedOn: Date;
+
 }
-
-type WordInstanceType = Sequelize.Instance<WordAttributeType> & WordAttributeType;
-
-const Word = sequelize.wordine<WordInstanceType, WordAttributeType>('word', {
-  id: {
-    type: Sequelize.UUIDV4,
-    primaryKey: true,
-    wordaultValue: Sequelize.UUIDV4,
-    allowNull: false,
-  },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-});
-  
-// force: true will drop the table if it already exists
-//Word.sync({force: true}).then(() => {
-  //// Table created
-  //return Word.create({
-  //});
-//});
-
-export wordault Word;
-
-
 

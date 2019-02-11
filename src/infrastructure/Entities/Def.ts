@@ -1,62 +1,47 @@
-import sequelize from '../database/connection';
+import { Model, Column, Table, CreatedAt, UpdatedAt, IsUUID, PrimaryKey, AllowNull, Default, BelongsTo, ForeignKey } from "sequelize-typescript";
 import Sequelize from 'sequelize';
+import { Word } from './Word';
+import { Pos } from './Pos';
 
 /**
  * Def Entity
- *
  **/
-interface DefAttributeType {
-  id: string;
+@Table
+export class Def extends Model<Def> {
+
+  @IsUUID(4)
+  @PrimaryKey
+  @Default(Sequelize.UUIDV4)
+  @Column(Sequelize.STRING)
+  id?: string;
+
+  @AllowNull(false)
+  @Column(Sequelize.STRING)
   def: string;
-  pos: number;
+
+  @Column(Sequelize.BLOB)
   image: string;
+
+  @ForeignKey(() => Pos)
+  @Column(Sequelize.INTEGER)
+  posId: number;
+
+  @BelongsTo(() => Pos)
+  pos: Pos;
+
+  @ForeignKey(() => Word)
+  @Column(Sequelize.STRING)
+  wordId: string;
+
+  @BelongsTo(() => Word)
+  word: Word;
+
+  @CreatedAt
+  creationDate: Date;
+
+  @UpdatedAt
+  updatedOn: Date;
+
 }
-
-type DefInstanceType = Sequelize.Instance<DefAttributeType> & DefAttributeType;
-
-const Def = sequelize.define<DefInstanceType, DefAttributeType>('def', {
-  id: {
-    type: Sequelize.UUIDV4,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
-  },
-  def: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  pos: {
-    type: Sequelize.NUMBER,
-    references: {
-      model: Pos,
-      key: id,
-      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED,
-    },
-    allowNull: false,
-    defaultValue: 0;
-  },
-  image: {
-    type: Sequelize.BLOB,
-    allowNull: true,
-  },
-  word_id: {
-    type: Sequelize.UUIDV4,
-    references: {
-      model: Word,
-      key: id,
-      deferrable: Sequelize.Deferrable.INITIALLY_DEFERRED,
-    },
-    allowNull: false,
-  }
-});
-  
-// force: true will drop the table if it already exists
-//Def.sync({force: true}).then(() => {
-  //// Table created
-  //return Def.create({
-  //});
-//});
-
-export default Def;
 
 
