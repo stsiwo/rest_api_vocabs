@@ -1,13 +1,13 @@
 import { Model, Column, Table, CreatedAt, UpdatedAt, IsUUID, PrimaryKey, AllowNull, Default, HasMany, BelongsTo, ForeignKey } from "sequelize-typescript";
 import Sequelize from 'sequelize';
-import { User } from './User';
-import { Def } from './Def';
+import User from './User';
+import Def from './Def';
 
 /**
  * Word Entity
  **/
 @Table
-export class Word extends Model<Word> {
+export default class Word extends Model<Word> {
 
   @IsUUID(4)
   @PrimaryKey

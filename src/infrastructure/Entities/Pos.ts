@@ -1,12 +1,12 @@
 import { Model, Column, Table, PrimaryKey, AllowNull, HasMany, Unique, Length } from "sequelize-typescript";
 import Sequelize from 'sequelize';
-import { Def } from './Def';
+import Def from './Def';
 
 /**
  * Pos Entity
  **/
 @Table
-export class Pos extends Model<Pos> {
+export default class Pos extends Model<Pos> {
 
   @Unique
   @PrimaryKey

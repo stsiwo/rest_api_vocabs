@@ -1,67 +1,19 @@
-import sequelize from '../database/connection';
+import { Model, Column, Table, PrimaryKey } from "sequelize-typescript";
 import Sequelize from 'sequelize';
 
 /**
- * User Entity
- *
+ * Test Entity
  **/
-interface UserAttributeType {
-  id?: string;
-  name: string
+@Table
+export default class Test extends Model<Test> {
+
+  @PrimaryKey
+  @Column(Sequelize.INTEGER)
+  id: number;
+
+  @Column(Sequelize.STRING)
+  test: string;
+
 }
-
-type UserInstanceType = Sequelize.Instance<UserAttributeType> & UserAttributeType;
-
-const User = sequelize.define<UserInstanceType, UserAttributeType>('user', {
-  id: {
-    type: Sequelize.STRING,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
-  },
-  name: {
-    type: Sequelize.STRING
-  }
-});
-  
-/**
- * Picture Entity
- *
- **/
-interface PictureAttributeType {
-  id?: string;
-  content: string;
-}
-
-type PictureInstanceType = Sequelize.Instance<PictureAttributeType> & PictureAttributeType;
-
-const Picture = sequelize.define<PictureInstanceType, PictureAttributeType>('picture', {
-  id: {
-    type: Sequelize.STRING,
-    primaryKey: true,
-    defaultValue: Sequelize.UUIDV4,
-    allowNull: false,
-  },
-  content: {
-    type: Sequelize.STRING
-  }
-});
-
-const user1 = Picture.belongsTo(User);
-// force: true will drop the table if it already exists
-Picture.sync({force: true}).then(() => {
-  // Table created
-  return Picture.create({ 
-    content: "test pic",  
-    user: {
-      name: "kaoru",
-    },
-  }, {
-    include: [ user1 ],
-  });
-});
-
-export default Picture;
-
 
 

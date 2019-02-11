@@ -5,7 +5,9 @@ const sequelize =  new Sequelize({
   dialect: 'postgres',
   username: 'postgres',
   password: 'sts1551iwo',
-  modelPaths: [__dirname + '/infrastructure/Entities']
+  modelPaths: [
+    __dirname + '/Entities',
+  ]
 });
 
 export default sequelize;
