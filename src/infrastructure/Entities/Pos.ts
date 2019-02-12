@@ -18,6 +18,10 @@ export default class Pos extends Model<Pos> {
   @Column(Sequelize.STRING)
   pos: string;
 
+  @AllowNull(false)
+  @Column(Sequelize.STRING)
+  abbr: string;
+
   @HasMany(() => Def)
   defs: Def[];
 

@@ -1,0 +1,52 @@
+[
+  {
+    "id": 0,
+    "pos": "noun",
+    "abbr": "n."
+  },
+  {
+    "id": 1,
+    "pos": "verb",
+    "abbr": "v."
+  },
+  {
+    "id": 2,
+    "pos": "adjuctive",
+    "abbr": "adj."
+  },
+  {
+    "id": 3,
+    "pos": "adverb",
+    "abbr": "adv."
+  },
+  {
+    "id": 4,
+    "pos": "preposition",
+    "abbr": "prep."
+  },
+  {
+    "id": 5,
+    "pos": "pronoun",
+    "abbr": "pron."
+  },
+  {
+    "id": 6,
+    "pos": "conjunction",
+    "abbr": "conj."
+  },
+  {
+    "id": 7,
+    "pos": "interjection",
+    "abbr": "interj."
+  },
+  {
+    "id": 8,
+    "pos": "idiom",
+    "abbr": "idiom"
+  },
+  {
+    "id": 9,
+    "pos": "other",
+    "abbr": "other"
+  }
+]

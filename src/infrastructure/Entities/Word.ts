@@ -1,4 +1,4 @@
-import { Model, Column, Table, CreatedAt, UpdatedAt, IsUUID, PrimaryKey, AllowNull, Default, HasMany, BelongsTo, ForeignKey } from "sequelize-typescript";
+import { Model, Column, Table, CreatedAt, UpdatedAt, PrimaryKey, AllowNull, HasMany, BelongsTo, ForeignKey, IsUUID, Default } from "sequelize-typescript";
 import Sequelize from 'sequelize';
 import User from './User';
 import Def from './Def';
@@ -12,7 +12,7 @@ export default class Word extends Model<Word> {
   @IsUUID(4)
   @PrimaryKey
   @Default(Sequelize.UUIDV4)
-  @Column(Sequelize.STRING)
+  @Column(Sequelize.UUID)
   id?: string;
 
   @AllowNull(false)
@@ -20,7 +20,7 @@ export default class Word extends Model<Word> {
   name: string;
 
   @ForeignKey(() => User)
-  @Column(Sequelize.STRING)
+  @Column(Sequelize.UUID)
   userId: string;
 
   @BelongsTo(() => User)

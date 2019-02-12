@@ -1,3 +1,2 @@
-const path = require('path');
+const userSampleJson = require('../tests/storage/Entities/User.json');
 
-console.log(path.resolve('database.json'));

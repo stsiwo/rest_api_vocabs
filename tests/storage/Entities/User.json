@@ -1,0 +1,52 @@
+[
+  {
+    "name": "sample_name1",
+    "email": "sample@sample_email1.com",
+    "password": "sample_password1"
+  },
+  {
+    "name": "sample_name2",
+    "email": "sample@sample_email2.com",
+    "password": "sample_password2"
+  },
+  {
+    "name": "sample_name3",
+    "email": "sample@sample_email3.com",
+    "password": "sample_password3"
+  },
+  {
+    "name": "sample_name4",
+    "email": "sample@sample_email4.com",
+    "password": "sample_password4"
+  },
+  {
+    "name": "sample_name5",
+    "email": "sample@sample_email5.com",
+    "password": "sample_password5"
+  },
+  {
+    "name": "sample_name6",
+    "email": "sample@sample_email6.com",
+    "password": "sample_password6"
+  },
+  {
+    "name": "sample_name7",
+    "email": "sample@sample_email7.com",
+    "password": "sample_password7"
+  },
+  {
+    "name": "sample_name8",
+    "email": "sample@sample_email8.com",
+    "password": "sample_password8"
+  },
+  {
+    "name": "sample_name9",
+    "email": "sample@sample_email9.com",
+    "password": "sample_password9"
+  },
+  {
+    "name": "sample_name10",
+    "email": "sample@sample_email10.com",
+    "password": "sample_password10"
+  }
+]

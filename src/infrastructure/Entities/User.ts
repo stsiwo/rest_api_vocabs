@@ -11,7 +11,7 @@ export default class User extends Model<User> {
   @IsUUID(4)
   @PrimaryKey
   @Default(Sequelize.UUIDV4)
-  @Column(Sequelize.STRING)
+  @Column(Sequelize.UUID)
   id?: string;
 
   @AllowNull(false)
