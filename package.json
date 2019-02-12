@@ -11,7 +11,9 @@
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "start": "nodemon lib/test.js",
-    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
+    "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
+    "seed": "npx sequelize db:seed:all",
+    "seed:undo": "npx sequelize db:seed:undo:all"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
   "homepage": "https://github.com/stsiwo/rest_api_vocabs#readme",
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
+    "@types/dotenv": "^6.1.0",
     "bcrypt": "^3.0.4",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
