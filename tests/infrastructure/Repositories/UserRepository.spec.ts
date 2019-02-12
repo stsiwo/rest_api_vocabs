@@ -1,16 +1,17 @@
 import UserRepository from '../../../src/infrastructure/Repositories/UserRepository';
-import sequelize from '../../../src/infrastructure/database/connection';
+import sequelize from '../../../src/infrastructure/connection';
 
 describe('UserRepository', function() {
 
-  
   const userRepo = new UserRepository();
 
   it('get all Users', async function() {
 
-    const users = await userRepo.getAll();
+    await sequelize.sync({ force: true });
 
+    const users = await userRepo.getAll();
     console.log(users);
+
      
   });
 });
