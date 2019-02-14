@@ -12,10 +12,6 @@ describe('UserController', function() {
         .expect(200, { message: "user list is here" })
     });
   });
-
-  afterAll(async done => {
-    done();
-  });
 });
 
 
