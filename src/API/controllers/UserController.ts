@@ -1,9 +1,11 @@
-import { injectable, inject } from "inversify";
+import * as express from 'express';
+import { interfaces, controller, httpGet } from "inversify-express-utils";
+import { inject } from "inversify";
 import TYPES from '../../type';
 import IUserService from '../services/IUserService';
 
-@injectable()
-export default class UserController implements UserController {
+@controller("/users")
+export default class UserController implements interfaces.Controller {
 
   private _userService: IUserService;
 
@@ -13,9 +15,14 @@ export default class UserController implements UserController {
     this._userService = userService;
   }
 
-  public getUsers(): string {
-    return this._userService.getUsers();
+  @httpGet("/")
+  private index(req: express.Request, res: express.Response, next: express.NextFunction): void {
+    const users = this._userService.getUsers();
+    res.status(200).json({ message: users });
   }
+  //public getUsers(): string {
+    //return this._userService.getUsers();
+  //}
 }
 
 
