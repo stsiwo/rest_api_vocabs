@@ -1,9 +1,11 @@
+import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import container from './iocContainer';
 import { InversifyExpressServer } from 'inversify-express-utils';
 
 // declare metadata by @controller annotation
 import "./API/controllers/UserController";
+
 
 // create server
 let server = new InversifyExpressServer(container);
