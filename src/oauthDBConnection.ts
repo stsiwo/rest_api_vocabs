@@ -106,7 +106,7 @@ export const OauthAccessTokens = sequelize.define<IOauthAccessTokensInstance, IO
 
 //User.create({ name: "satoshi", password: "pw" });
 
-sequelize.sync({ force: true })
+//sequelize.sync({ force: true })
 
 
 export default sequelize;

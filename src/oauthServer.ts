@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // post request for access token
 // - register new user (not exisitng user): sign up
-app.post('/signup' /*,register user middleware*/, async function(req: express.Request, res: express.Response) {
+app.post('/signup' /*,register user middleware*/, function(req: express.Request, res: express.Response) {
 
   const username = req.body.username;
   const password = req.body.password;
@@ -27,12 +27,10 @@ app.post('/signup' /*,register user middleware*/, async function(req: express.Re
 
   console.log(username);
   // save user
-  const user = await User.create({ name: username, password: password }); 
+  User.create({ name: username, password: password }).then(( user ) => {
+    res.status(200).json({ user: user.name });
+  }); 
   
-  console.log("inside post request");
-
-
-  res.status(200).json({ user: user.name });
 })
 
 app.post('/login' /*,register user middleware*/,async function(req: express.Request, res: express.Response) {
@@ -41,43 +39,43 @@ app.post('/login' /*,register user middleware*/,async function(req: express.Requ
   res.status(200).json({ username: req.body.username });
 })
 
-const OAuth2Server = require('oauth2-server');
-const Request = OAuth2Server.Request;
-const Response = OAuth2Server.Response;
+//const OAuth2Server = require('oauth2-server');
+//const Request = OAuth2Server.Request;
+//const Response = OAuth2Server.Response;
 
-const model = {
+//const model = {
   
-  // optional 
-  // generate access token 
-  // default implementation is ok for now so don't implement this
-  //generateAccessToken: function(client, user, scope, [callback]) {
+  //// optional 
+  //// generate access token 
+  //// default implementation is ok for now so don't implement this
+  ////generateAccessToken: function(client, user, scope, [callback]) {
+  ////}
+
+  //// require if authenticate() is used
+  //// retrieve an existing access token previously saved through saveToken()
+  //getAccessToken: function(accessToken: string) {
+  //},
+
+  //// require for all grant type including password
+  //// get a client by client id and its secret 
+  //// maybe this does not need this in this case (password) so
+  //// don't need to implement this
+  //getClient: function(clientId: string, clientSecret: string) {
+    //return null; 
+  //},
+
+  //// require for password grant type
+  //// get user by username, password 
+  //getUser: function(username: string, password: string) {
+    //// access database to get user
+  //},
+
+  //// require for all grant type including password
+//// save token (access token, expiration, and its associating user)
+  //saveToken: function(token: string, client: object, user: IUser) {
+
   //}
-
-  // require if authenticate() is used
-  // retrieve an existing access token previously saved through saveToken()
-  getAccessToken: function(accessToken: string) {
-  },
-
-  // require for all grant type including password
-  // get a client by client id and its secret 
-  // maybe this does not need this in this case (password) so
-  // don't need to implement this
-  getClient: function(clientId: string, clientSecret: string) {
-    return null; 
-  },
-
-  // require for password grant type
-  // get user by username, password 
-  getUser: function(username: string, password: string) {
-    // access database to get user
-  },
-
-  // require for all grant type including password
-// save token (access token, expiration, and its associating user)
-  saveToken: function(token: string, client: object, user: IUser) {
-
-  }
-};
+//};
 
 /**
  * Resource Owning Password Credentials grant type (a.k.a Password grant type)
@@ -95,31 +93,32 @@ const model = {
  *
  **/
 
-const oauth = new OAuth2Server({
-  model: model, 
-});
+//const oauth = new OAuth2Server({
+  //model: model, 
+//});
 
-// represents an incoming HTTP request
-let request = new Request({
-  method: 'POST',
-});
+//// represents an incoming HTTP request
+//let request = new Request({
+  //method: 'POST',
+//});
 
-// represents an outgoing HTTP response
-let response = new Response({
-  headers: {
-    "Content-Type": "application/json",
-    "Cache-Control": "no-store",
-    "Pragma": "no-cache"
-  }
-});
+//// represents an outgoing HTTP response
+//let response = new Response({
+  //headers: {
+    //"Content-Type": "application/json",
+    //"Cache-Control": "no-store",
+    //"Pragma": "no-cache"
+  //}
+//});
 
-// use for b) login use case
-oauth.authenticate(request, response)
-  .then((token: string) => {
-    // The request was successfully authenticated.
-  })
-  .catch((err: Error) => {
-    // The request failed authentication.
-  });
+//// use for b) login use case
+//oauth.authenticate(request, response)
+  //.then((token: string) => {
+    //// The request was successfully authenticated.
+  //})
+  //.catch((err: Error) => {
+    //// The request failed authentication.
+  //});
 
+//console.log("just before listen");
 app.listen(3000, () => { console.log("litening"); });
