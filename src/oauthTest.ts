@@ -1,7 +1,7 @@
 import express from 'express';
 //import OAuth2Server from 'oauth2-server';
 import OAuth2Server from 'express-oauth-server';
-import { Token } from 'oauth2-server';
+import { Token, RefreshToken } from 'oauth2-server';
 import * as bodyParser from 'body-parser';
 import { User, OauthAccessTokens, IOauthAccessTokens } from './oauthDBConnection';
 
@@ -31,7 +31,7 @@ const client: IClient = {
   id: "22222",
   clientId: "sample_cid",
   clientSecret: "sample_cs",
-  grants: [ 'password' ],
+  grants: [ 'password', 'refresh_token' ],
 };
 
 interface IToken {
@@ -52,6 +52,32 @@ interface IToken {
 //};
 
 const model = {
+  /**
+   * get refresh token in db when 'refresh_token' grant type
+   *
+   * @param { string } refreshToken - a token from request
+   *
+   * @return { Promise<RefreshToken | null> } refresh token object 
+   **/
+  getRefreshToken: async function(refreshToken: string): Promise<RefreshToken | null> {
+
+    const refreshTokenObject = await OauthAccessTokens.findOne({ where: { refresh_token: refreshToken }, raw: true });
+
+    if ( refreshTokenObject === null ) {
+      throw new Error("there is no such a refresh token");
+    }
+
+    const user = await User.findOne({ where: { id: refreshTokenObject.user_id }, raw: true });
+
+    return {
+      refreshToken: refreshTokenObject.refresh_token,
+      client: {
+        id: client.id,
+        grants: client.grants 
+      },
+      user: user
+    };
+  },
   
   // optional 
   // generate access token 
@@ -142,11 +168,41 @@ const model = {
   verifyScope: async function(token: IToken, scope: string): Promise<boolean> {
     // currently don't use scope at all so always return true to pass this verify function
     return true;
+  },
+
+  /**
+   * revoke refresh token when no longer necessary
+   *  - means delete refresh token data from access token table
+   *
+   * @param { RefreshToken } refresh token - the token from getRefreshToken
+   **/
+  revokeToken: async function(refreshTokenObject: RefreshToken): Promise<boolean> {
+
+    // find access token row where refresh token matches arg
+    const targetAccessToken = await OauthAccessTokens.findOne({ where: { refresh_token: refreshTokenObject.refreshToken }})
+
+    if ( targetAccessToken === null ) {
+      throw new Error("there is no such a refresh token to be revoked");
+    }
+
+    // update the refresh token column to null
+    const isDeleted = await targetAccessToken.update({ refresh_token: null })
+    .then(( result ) => {
+      // return true if success
+      return true;
+    })
+    .catch(( err ) => {
+      // return false if err
+      return false; 
+    });
+
+    return isDeleted;
   }
 };
 
 const oauth = new OAuth2Server({
-  model: model 
+  model: model,
+  accessTokenLifetime: 5 
 });
 
 // =================== custom ======================
