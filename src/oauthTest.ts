@@ -5,6 +5,11 @@ import { Token, RefreshToken } from 'oauth2-server';
 import * as bodyParser from 'body-parser';
 import { User, OauthAccessTokens, IOauthAccessTokens } from './oauthDBConnection';
 
+/**
+ * NOTE: OAuth protocol recommends to separate Authroization server and Resource server, but I don't know how to implement this using express-oauth-server because of "oauthenticate()". it resides in Authorization Server ( not Resource Server ); therefore, there is no way to authenticate request in Resource Server.
+ *  - if you use jwt, that could be authenticated in Resource server, but currently i use simple token (random string) *  - for now, i implement Authorization Server and Resource Server at a same server
+ **/
+
 
 interface IUser {
   id?: string;
