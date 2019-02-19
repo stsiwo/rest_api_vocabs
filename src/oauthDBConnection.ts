@@ -56,10 +56,10 @@ export const User = sequelize.define<IUserInstance, IUser>('user', {
 });
 
 export interface IOauthAccessTokens {
-  access_tokens: string;
+  access_token: string;
   user_id: string;
-  refresh_tokens: string;
-  expires: string;
+  refresh_token: string;
+  access_token_expire: Date;
   scope: string;
 }
 
@@ -68,7 +68,7 @@ export interface IOauthAccessTokensInstance extends Instance<IOauthAccessTokens>
 export const OauthAccessTokens = sequelize.define<IOauthAccessTokensInstance, IOauthAccessTokens>('oauth_access_tokens_test', {
 
   // access_tokens
-  access_tokens: {
+  access_token: {
     type: Sequelize.STRING(40),
     allowNull: false,
     primaryKey: true,
@@ -86,13 +86,13 @@ export const OauthAccessTokens = sequelize.define<IOauthAccessTokensInstance, IO
   },
 
   // refresh_tokens
-  refresh_tokens: {
+  refresh_token: {
     type: Sequelize.STRING,
     defaultValue: null
   },
 
   // expires
-  expires: {
+  access_token_expire: {
     type: Sequelize.DATE,
     defaultValue: null
   },
@@ -106,7 +106,10 @@ export const OauthAccessTokens = sequelize.define<IOauthAccessTokensInstance, IO
 
 //User.create({ name: "satoshi", password: "pw" });
 
-//sequelize.sync({ force: true })
+sequelize.sync({ force: true }).then(() => {
+  // sample user assuming he has account in user table but not in accessTokens
+  User.create({ name: "sample_name", password: "sample_pw" });
+});
 
 
 export default sequelize;
