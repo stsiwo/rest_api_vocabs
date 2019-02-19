@@ -69,6 +69,10 @@ const model = {
 
     const user = await User.findOne({ where: { id: refreshTokenObject.user_id }, raw: true });
 
+    if ( user === null ) {
+      throw new Error("there is no such user for the corresponding refresh token");
+    }
+
     return {
       refreshToken: refreshTokenObject.refresh_token,
       client: {
@@ -91,7 +95,15 @@ const model = {
 
     const accessTokenObject = await OauthAccessTokens.findOne({ where: { access_token: accessToken }, raw: true });
 
+    if ( accessTokenObject === null ) {
+      throw new Error("there is no such access token to be gotten");
+    }
+
     const user = await User.findOne({ where: { id: accessTokenObject.user_id }, raw: true });
+
+    if ( user === null ) {
+      throw new Error("there is no such user for the corrsponding access token");
+    }
 
     return {
       accessToken: accessTokenObject.access_token,
@@ -125,6 +137,10 @@ const model = {
   getUser: async function(username: string, password: string): Promise<IUser | null> {
     
     const user = await User.findOne({ where: { name: username, password: password }, raw: true});
+
+    if ( user === null ) {
+      throw new Error("there is no such user to be retrieved");
+    }
 
     return user;
   },
