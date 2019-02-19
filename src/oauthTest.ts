@@ -189,7 +189,7 @@ app.post('/test', oauth.token({
   requireClientAuthentication: {password: false}
 })); 
 
-app.post('/authenticate', oauth.authenticate(), function(req: express.Request, res: express.Response) {
+app.get('/authenticate', oauth.authenticate(), function(req: express.Request, res: express.Response) {
   console.log("receive post request");
 
   res.status(200).json({ username: "success!" });
