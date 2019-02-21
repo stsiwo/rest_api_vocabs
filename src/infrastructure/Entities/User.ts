@@ -1,6 +1,7 @@
-import { Model, Column, Table, CreatedAt, UpdatedAt, IsUUID, PrimaryKey, AllowNull, IsEmail, Unique, Default, HasMany } from "sequelize-typescript";
+import { Model, Column, Table, CreatedAt, UpdatedAt, IsUUID, PrimaryKey, AllowNull, IsEmail, Unique, Default, HasMany, HasOne } from "sequelize-typescript";
 import Sequelize from 'sequelize';
 import Word from './Word';
+import AccessToken from './AccessToken';
 
 /**
  * User Entity
@@ -36,6 +37,9 @@ export default class User extends Model<User> {
 
   @HasMany(() => Word)
   words: Word[];
+
+  @HasOne(() => AccessToken)
+  accessToken: string;
   /**
    * since typescript refers "this" to wrong object (pointing UserAttributeType, but actually UserInstanceType)
    * i assign this as any to remove compile error

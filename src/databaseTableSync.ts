@@ -4,6 +4,7 @@ const testUserJson = require('../tests/storage/Entities/User.json');
 
 sequelize.sync({ force: true }).then(() => {
   
+  console.log("hey");
   User.bulkCreate( testUserJson );
 
 });

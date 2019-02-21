@@ -5,6 +5,7 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 
 // declare metadata by @controller annotation
 import "./API/controllers/UserController";
+import "./API/controllers/OAuthController";
 
 
 // create server
@@ -20,4 +21,4 @@ server.setConfig((app) => {
 const app = server.build();
 export default app;
 
-app.listen(3000);
+app.listen(3000, () => { console.log("start listening...") });

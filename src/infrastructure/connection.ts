@@ -16,7 +16,13 @@ const sequelize =  new Sequelize({
   password: dbPassword, 
   modelPaths: [
     __dirname + '/Entities'
-  ]
+  ],
+  /**
+   * this is to disable following warning:
+   * sequelize deprecated String based operators are now deprecated. Please use Symbol based operators for better security, read more at http://docs.sequelizejs.com/manual/tutorial/querying.html#operato
+rs node_modules\sequelize\lib\sequelize.js:242:13
+   **/
+  operatorsAliases: false
 });
 
 export default sequelize;
