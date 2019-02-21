@@ -1,10 +1,10 @@
-import sequelize from './infrastructure/connection'; 
-import User from './infrastructure/Entities/User';
+import sequelize from './Framework/Infrastructure/connection'; 
+import User from './Framework/Infrastructure/DataEntities/User';
 const testUserJson = require('../tests/storage/Entities/User.json');
 
 sequelize.sync({ force: true }).then(() => {
   
-  console.log("hey");
+  // create initial test data
   User.bulkCreate( testUserJson );
 
 });

@@ -1,5 +1,5 @@
 import { injectable } from 'inversify';
-import IUserRepository from './IUserRepository';
+import IUserRepository from '../../../UseCase/IRepositories/IUserRepository';
 
 @injectable()
 export default class UserRepository implements IUserRepository {

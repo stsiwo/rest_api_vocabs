@@ -1,10 +1,10 @@
 // initialize container and make binding
 import "reflect-metadata";
 import { Container } from "inversify";
-import IUserService from './API/services/IUserService'; 
-import UserService from './API/services/UserService';
-import IUserRepository from './infrastructure/Repositories/IUserRepository'; 
-import UserRepository from './infrastructure/Repositories/UserRepository';
+import IUserService from './UseCase/IServices/IUserService'; 
+import UserService from './UseCase/Services/UserService';
+import IUserRepository from './UseCase/IRepositories/IUserRepository'; 
+import UserRepository from './Framework/Infrastructure/Repositories/UserRepository';
 import TYPES from './type';
 
 const container = new Container();

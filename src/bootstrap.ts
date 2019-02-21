@@ -4,8 +4,8 @@ import container from './iocContainer';
 import { InversifyExpressServer } from 'inversify-express-utils';
 
 // declare metadata by @controller annotation
-import "./API/controllers/UserController";
-import "./API/controllers/OAuthController";
+import "./Interface/Controllers/UserController";
+import "./Interface/Controllers/OAuthController";
 
 
 // create server

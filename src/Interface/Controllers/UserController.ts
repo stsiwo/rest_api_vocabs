@@ -2,7 +2,7 @@ import * as express from 'express';
 import { interfaces, controller, httpGet } from "inversify-express-utils";
 import { inject } from "inversify";
 import TYPES from '../../type';
-import IUserService from '../services/IUserService';
+import IUserService from '../../UseCase/IServices/IUserService';
 
 @controller("/users")
 export default class UserController implements interfaces.Controller {

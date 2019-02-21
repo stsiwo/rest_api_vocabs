@@ -1,7 +1,9 @@
 import OAuth2Server from 'express-oauth-server';
 import { User, Client, Token, RefreshToken } from 'oauth2-server';
-import EAccessToken from '../../infrastructure/Entities/AccessToken'; 
-import EUser from '../../infrastructure/Entities/User'; 
+// need to have dependency of IRepo instead of DataEntities. this violate "dependency rules"
+// #REFACTOR tag
+import EAccessToken from '../../Framework/Infrastructure/DataEntities/AccessToken'; 
+import EUser from '../../Framework/Infrastructure/DataEntities/User'; 
 
 /**
  * NOTE: OAuth protocol recommends to separate Authroization server and Resource server, but I don't know how to implement this using express-oauth-server because of "oauthenticate()". it resides in Authorization Server ( not Resource Server ); therefore, there is no way to authenticate request in Resource Server.

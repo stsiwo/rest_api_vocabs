@@ -1,5 +1,5 @@
 /**
- * IRepository should be inside application layer
+ * IRepository should be inside application layer ( or use case layer )
  *   - this is because Infrastructure layer is the most outer layer
  *   - so application layer can't have dependency of outer layer
  *   - to solve this issue, how application layer can have respository dependency is to use dependency inversion

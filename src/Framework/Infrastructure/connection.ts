@@ -15,7 +15,7 @@ const sequelize =  new Sequelize({
   username: dbUserName,
   password: dbPassword, 
   modelPaths: [
-    __dirname + '/Entities'
+    __dirname + '/DataEntities'
   ],
   /**
    * this is to disable following warning:

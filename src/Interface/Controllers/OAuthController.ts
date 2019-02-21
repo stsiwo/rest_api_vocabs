@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { interfaces, controller, httpPost } from "inversify-express-utils";
 import { inject } from "inversify";
-import oauth from '../oauth/oauthUtil';
+import oauth from '../Services/oauthUtil';
 
 @controller("/oauth")
 export default class OAuthController implements interfaces.Controller {
