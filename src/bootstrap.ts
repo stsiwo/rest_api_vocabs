@@ -1,7 +1,16 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import cors from 'cors';
 import container from './iocContainer';
 import { InversifyExpressServer } from 'inversify-express-utils';
+
+// cors config
+const corsOptions = {
+  origin: 'http://localhost:8080',
+  allowedHeaders: [ 'Content-Type' ],
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  
+}
 
 // declare metadata by @controller annotation
 import "./Interface/Controllers/UserController";
@@ -16,6 +25,7 @@ server.setConfig((app) => {
     extended: true
   }));
   app.use(bodyParser.json());
+  app.use(cors(corsOptions));
 });
 
 const app = server.build();

@@ -1,10 +1,10 @@
 import * as express from 'express';
-import { interfaces, controller, httpGet } from "inversify-express-utils";
+import { interfaces, controller, httpGet, httpPost } from "inversify-express-utils";
 import { inject } from "inversify";
 import TYPES from '../../type';
 import IUserService from '../../UseCase/IServices/IUserService';
 
-@controller("/users")
+@controller("/user")
 export default class UserController implements interfaces.Controller {
 
   private _userService: IUserService;
@@ -20,9 +20,12 @@ export default class UserController implements interfaces.Controller {
     const users = this._userService.getUsers();
     res.status(200).json({ message: users });
   }
-  //public getUsers(): string {
-    //return this._userService.getUsers();
-  //}
+
+  @httpPost("/")
+  private post(req: express.Request, res: express.Response, next: express.NextFunction): void {
+    console.log(req.body);
+    res.status(200).json({ message: "success" });
+  }
 }
 
 
