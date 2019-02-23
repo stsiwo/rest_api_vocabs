@@ -24,6 +24,7 @@ export default class UserController implements interfaces.Controller {
   @httpPost("/")
   private post(req: express.Request, res: express.Response, next: express.NextFunction): void {
     console.log(req.body);
+    res.set('Set-Cookie', 'testCookie=testCookieValue');
     res.status(200).json({ message: "success" });
   }
 }
