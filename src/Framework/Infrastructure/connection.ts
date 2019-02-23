@@ -1,4 +1,4 @@
-import "../env";
+import "../../env";
 import { Sequelize } from 'sequelize-typescript';
 
 /**

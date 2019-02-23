@@ -4,6 +4,9 @@ import cors from 'cors';
 import container from './iocContainer';
 import { InversifyExpressServer } from 'inversify-express-utils';
 
+// sequelize initialize
+import './Framework/Infrastructure/connection';
+
 // cors config
 const corsOptions = {
   // when credentialed request, you need to specify the origin rather than "*"

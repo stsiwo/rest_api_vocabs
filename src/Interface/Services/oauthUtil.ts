@@ -109,6 +109,7 @@ const model = {
    **/
   getClient: async function(clientId: string, clientSecret: string): Promise<Client> {
     return TempClient
+    console.log("inside getClient");
   },
 
   /**
@@ -156,7 +157,7 @@ const model = {
      **/
     const newAccessToken = await EAccessToken.create({ 
       accessToken: token.accessToken,
-      accessTokenExpiresAt: token.accessTokenExpiresAtsAt,
+      accessTokenExpiresAt: token.accessTokenExpiresAt,
       refreshToken: token.refreshToken,
       scope: token.scope,
       userId: user.id
@@ -165,7 +166,7 @@ const model = {
     // and return combination of token, client, and user for response
     return { 
       ...token,
-      TempClient,
+      client,
       user,
     }
   },
@@ -220,7 +221,9 @@ const model = {
 // create oauth server
 const oauth = new OAuth2Server({
   model: model,
-  accessTokenLifetime: 4 * 60 * 60 
+  accessTokenLifetime: 4 * 60 * 60,
+  // disable clientSecret in request
+  requireClientAuthentication: {password: false}
 });
 
 export default oauth;
