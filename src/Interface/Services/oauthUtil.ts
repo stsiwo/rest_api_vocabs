@@ -85,7 +85,7 @@ const model = {
 
     return {
       accessToken: accessTokenObject.accessToken,
-      accessTokenExpiresAtsAt: accessTokenObject.accessTokenExpiresAt,
+      accessTokenExpiresAt: accessTokenObject.accessTokenExpiresAt,
       refreshToken: accessTokenObject.refreshToken,
       client: {
         id: TempClient.id,
@@ -109,7 +109,6 @@ const model = {
    **/
   getClient: async function(clientId: string, clientSecret: string): Promise<Client> {
     return TempClient
-    console.log("inside getClient");
   },
 
   /**

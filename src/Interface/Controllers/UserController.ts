@@ -3,6 +3,7 @@ import { interfaces, controller, httpGet, httpPost } from "inversify-express-uti
 import { inject } from "inversify";
 import TYPES from '../../type';
 import IUserService from '../../UseCase/IServices/IUserService';
+import oauth from '../Services/oauthUtil';
 
 @controller("/user")
 export default class UserController implements interfaces.Controller {
@@ -15,7 +16,7 @@ export default class UserController implements interfaces.Controller {
     this._userService = userService;
   }
 
-  @httpGet("/")
+  @httpGet("/", oauth.authenticate())
   private index(req: express.Request, res: express.Response, next: express.NextFunction): void {
     const users = this._userService.getUsers();
     res.status(200).json({ message: users });
