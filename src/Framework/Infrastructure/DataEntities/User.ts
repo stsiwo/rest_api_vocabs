@@ -16,6 +16,7 @@ export default class User extends Model<User> {
   id?: string;
 
   @AllowNull(false)
+  @Unique
   @Column(Sequelize.STRING)
   name: string;
 
