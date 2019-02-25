@@ -11,4 +11,6 @@ export default interface IUserRepository {
 
   getAll: () => string;
 
+  getWordsOfUser: (userName: string) => Promise<object>;
+
 }

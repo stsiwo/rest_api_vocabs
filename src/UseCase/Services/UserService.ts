@@ -17,6 +17,10 @@ export default class UserService implements IUserService {
   public getUsers(): string {
     return this._userRepository.getAll();
   }
+
+  public async getWordsOfUser(userName: string): Promise<object> {
+    return this._userRepository.getWordsOfUser(userName);
+  }
 }
 
 

@@ -2,10 +2,14 @@ import { Model, Column, Table, CreatedAt, UpdatedAt, IsUUID, PrimaryKey, AllowNu
 import Sequelize from 'sequelize';
 import Word from './Word';
 import AccessToken from './AccessToken';
+import { injectable } from 'inversify';
+
+
 
 /**
  * User Entity
  **/
+@injectable()
 @Table
 export default class User extends Model<User> {
 

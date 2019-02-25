@@ -1,8 +1,9 @@
-import sequelize from '../../src/infrastructure/connection'; 
-import User from '../../src/infrastructure/Entities/User';
-import Pos from '../../src/infrastructure/Entities/Pos';
-import Def from '../../src/infrastructure/Entities/Def';
-import Word from '../../src/infrastructure/Entities/Word';
+import sequelize from '../../src/Framework/Infrastructure/connection'; 
+import User from '../../src/Framework/Infrastructure/DataEntities/User';
+import Pos from '../../src/Framework/Infrastructure/DataEntities/Pos';
+import Def from '../../src/Framework/Infrastructure/DataEntities/Def';
+import Word from '../../src/Framework/Infrastructure/DataEntities/Word';
+import AccessToken from '../../src/Framework/Infrastructure/DataEntities/AccessToken';
 const testUserJson = require('../storage/Entities/User.json');
 const testPosJson = require('../storage/Entities/Pos.json');
 const testDefJson = require('../storage/Entities/Def.json');
@@ -64,7 +65,13 @@ sequelize.sync({ force: true }).then(() => {
         words[4].$set('defs', [ defs[15], defs[16], defs[17], defs[18], defs[19] ])
       })
     });
-  // 3. done !!!
+  // clean up AccessToken
+  AccessToken.destroy({
+    where: {},
+    truncate: true
+  });
+
+
 });
 
 
