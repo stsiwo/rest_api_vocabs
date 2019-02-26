@@ -8,10 +8,9 @@ import IWord from '../../Domain/Word';
  *     - application layer can have repository dependency because now IRepository is inside application layer (same layer dependency is ok)
  *     - infrastructure repository implmentation has IRepository dependency of application layer (outer layer can has dependency in inner layer)
  **/
-export default interface IUserRepository {
+export default interface IWordRepository {
 
-  getAll: () => string;
-
-  getWordsOfUser: (userName: string) => Promise<object>;
+  bulkUpsert: ( words: IWord[] ) => Promise<boolean>;
 
 }
+

@@ -2,6 +2,7 @@ import { injectable, inject } from "inversify";
 import TYPES from '../../type';
 import IUserService from '../IServices/IUserService';
 import IUserRepository from '../IRepositories/IUserRepository'; 
+import IWord from '../../Domain/Word';
 
 @injectable()
 export default class UserService implements IUserService {

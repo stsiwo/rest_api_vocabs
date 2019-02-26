@@ -23,7 +23,11 @@ export default class Word extends Model<Word> {
   @Column(Sequelize.UUID)
   userId: string;
 
-  @BelongsTo(() => User)
+  // when a user is deleted, its associate words are also deleted
+  @BelongsTo(() => User, {
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE"
+  })
   user: User;
 
   @HasMany(() => Def)

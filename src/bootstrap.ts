@@ -21,7 +21,7 @@ const corsOptions = {
 // declare metadata by @controller annotation
 import "./Interface/Controllers/UserController";
 import "./Interface/Controllers/OAuthController";
-
+import "./Interface/Controllers/WordController";
 
 // create server
 let server = new InversifyExpressServer(container);

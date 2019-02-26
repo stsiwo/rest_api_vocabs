@@ -1,13 +1,13 @@
-import sequelize from '../../src/Framework/Infrastructure/connection'; 
-import User from '../../src/Framework/Infrastructure/DataEntities/User';
-import Pos from '../../src/Framework/Infrastructure/DataEntities/Pos';
-import Def from '../../src/Framework/Infrastructure/DataEntities/Def';
-import Word from '../../src/Framework/Infrastructure/DataEntities/Word';
-import AccessToken from '../../src/Framework/Infrastructure/DataEntities/AccessToken';
-const testUserJson = require('../storage/Entities/User.json');
-const testPosJson = require('../storage/Entities/Pos.json');
-const testDefJson = require('../storage/Entities/Def.json');
-const testWordJson = require('../storage/Entities/Word.json');
+import sequelize from '../src/Framework/Infrastructure/connection'; 
+import User from '../src/Framework/Infrastructure/DataEntities/User';
+import Pos from '../src/Framework/Infrastructure/DataEntities/Pos';
+import Def from '../src/Framework/Infrastructure/DataEntities/Def';
+import Word from '../src/Framework/Infrastructure/DataEntities/Word';
+import AccessToken from '../src/Framework/Infrastructure/DataEntities/AccessToken';
+const testUserJson = require('./storage/Entities/User.json');
+const testPosJson = require('./storage/Entities/Pos.json');
+const testDefJson = require('./storage/Entities/Def.json');
+const testWordJson = require('./storage/Entities/Word.json');
 
 // create tables if does not exists
 sequelize.sync({ force: true }).then(() => {

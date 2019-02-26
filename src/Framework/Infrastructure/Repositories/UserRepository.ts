@@ -31,11 +31,11 @@ export default class UserRepository implements IUserRepository {
       include: [
         { 
           model: Word, 
-          attributes: [ 'id', 'name', [ 'creationDate', 'createdAt' ]],
+          attributes: [ 'id', 'name', 'creationDate' ],
           include: [
             { 
               model: Def,
-              attributes: [ 'id', 'def', 'image', [ 'wordId', '_wordId' ], [ 'posId', 'pos' ]],
+              attributes: [ 'id', 'def', 'image', 'wordId', 'posId' ],
             } 
           ] 
         } 
@@ -45,4 +45,5 @@ export default class UserRepository implements IUserRepository {
     // return only words
     return user.words;
   }
+
 }

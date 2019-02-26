@@ -33,7 +33,11 @@ export default class Def extends Model<Def> {
   @Column(Sequelize.UUID)
   wordId: string;
 
-  @BelongsTo(() => Word)
+  // when a word is deleted, its associated defs are also deleted
+  @BelongsTo(() => Word, {
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE"
+  })
   word: Word;
 
   @CreatedAt
