@@ -5,4 +5,6 @@ export default interface IUserService {
 
   getWordsOfUser: (userName: string) => Promise<object>;
 
+  upsertWordsOfUser: (userName: string, words: IWord[]) => Promise<boolean>;
+
 }

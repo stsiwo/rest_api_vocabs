@@ -5,6 +5,7 @@ interface IWord {
   name: string;
   defs: Def[];
   creationDate: Date;
+  userId?: string;
 }
 
 export default IWord;

@@ -22,6 +22,10 @@ export default class UserService implements IUserService {
   public async getWordsOfUser(userName: string): Promise<object> {
     return this._userRepository.getWordsOfUser(userName);
   }
+
+  public async upsertWordsOfUser(userName: string, words: IWord[]): Promise<boolean> {
+    return this._userRepository.upsertWordsOfUser(userName, words);
+  }
 }
 
 

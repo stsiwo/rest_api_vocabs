@@ -15,9 +15,9 @@ export default class WordService implements IWordService {
     this._wordRepository = wordRepository;
   }
 
-  public async bulkUpsert( words: IWord[] ): Promise<boolean> {
-    return this._wordRepository.bulkUpsert(words);
-  }
+  //public async bulkUpsert( words: IWord[] ): Promise<boolean> {
+    //return this._wordRepository.bulkUpsert(words);
+  //}
 }
 
 

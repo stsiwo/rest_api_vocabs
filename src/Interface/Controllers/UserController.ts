@@ -17,17 +17,23 @@ export default class UserController implements interfaces.Controller {
   }
 
   @httpGet("/:username/word", oauth.authenticate())
-  private async index(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+  private async get(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
     const words = await this._userService.getWordsOfUser(req.params.username);
     res.status(200).json({ words: words });
   }
 
-  @httpPost("/")
-  private post(req: express.Request, res: express.Response, next: express.NextFunction): void {
-    console.log(req.body);
-    res.set('Set-Cookie', 'testCookie=testCookieValue');
-    res.status(200).json({ message: "success" });
+  @httpPost("/:username/word", oauth.authenticate())
+  private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+    const isOk = await this._userService.upsertWordsOfUser(req.params.username, JSON.parse(req.body));
+    isOk ? res.status(200).json({ message: "upsert is completed" }) : res.status(409).json({ message: "upsert is NOT completed" });
   }
+
+  //@httpPost("/")
+  //private post(req: express.Request, res: express.Response, next: express.NextFunction): void {
+    //console.log(req.body);
+    //res.set('Set-Cookie', 'testCookie=testCookieValue');
+    //res.status(200).json({ message: "success" });
+  //}
 }
 
 

@@ -1,9 +1,11 @@
 import { injectable, inject } from 'inversify';
 import IUserRepository from '../../../UseCase/IRepositories/IUserRepository';
+import sequelize from '../connection';
 import TYPES from '../../../type';
 import User from '../DataEntities/User'
 import Def from '../DataEntities/Def';
 import Word from '../DataEntities/Word';
+import IWord from '../../../Domain/Word';
 
 @injectable()
 export default class UserRepository implements IUserRepository {
@@ -44,6 +46,42 @@ export default class UserRepository implements IUserRepository {
 
     // return only words
     return user.words;
+  }
+
+  /**
+   * bulk upsert words entry 
+   *  - sequelize currently does not have "bulkUpsert" function, so implemented of my own
+   *  - upsert and update function can't have "include" option to upsert/update association at once!!! so don't use together
+   *
+   **/
+  public async upsertWordsOfUser(userName: string, words: IWord[]): Promise<boolean> {
+    // transaction starts
+    return sequelize.transaction(( t ) => {
+      // find user
+      return this._user.findOne({ where: { name: userName }})
+        // assign user id to each word object
+        .then(( user ) => { 
+          words.forEach(( word ) => word.userId = user.id);
+        })
+        // delete target words first
+        .then(() => { 
+          Word.destroy({
+            where: { id: words.map(( word ) => word.id) }
+          })
+        })
+        // create words with the association (Def) 
+        .then(() => {
+          return Promise.all( words.map(( word ) => {
+            return Word.create(word, {
+              include: [ Def ]
+            })
+          })) 
+        })
+        // if success, sequelize automatically commit the transaction
+        .then(() => true)
+        // if fail, sequelize automatically rollback the transaction
+        .catch((err) => { console.log(err); return false });
+    }); 
   }
 
 }
