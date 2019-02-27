@@ -16,9 +16,9 @@ export default class WordController implements interfaces.Controller {
     this._wordService = wordService;
   }
 
-  @httpDelete("/", oauth.authenticate())
+  @httpDelete("/")
   private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
-    const isOk = await this._wordService.deleteWords(req.body);
+    const isOk = await this._wordService.deleteWords(req.body.id);
     isOk ? res.status(200).json({ isOk: true }) : res.status(409).json({ isOk: false});
   }
 }

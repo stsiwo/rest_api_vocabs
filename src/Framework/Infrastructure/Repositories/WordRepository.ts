@@ -16,7 +16,12 @@ export default class WordRepository implements IWordRepository {
   }
 
   public async deleteWords( words: string[] ): Promise<boolean> {
-    this._word.destroy({ where: { id: words }});
+    return this._word.destroy({ where: { id: words }})
+    .then(() => true)
+    .catch((err) => { 
+      console.log(err);
+      return false
+    });
   }
 }
 

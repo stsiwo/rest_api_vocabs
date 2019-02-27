@@ -1,29 +1,25 @@
 import app from '../../../src/bootstrap'; 
 import request from 'supertest';
+import * as qs from 'query-string';
 
 describe('WordController', function() {
 
-  describe('POST /word', function() {
+  describe('DELETE /word', function() {
 
-    it('test', async function() {
+    it('delete words', async function() {
       
-      const testData = [
-        { 
-          id: "3745b9a3-ad43-4658-aa89-1a567b14a908",
-          name: "update_word1"
-        },
-        { 
-          id: "new-word-id",
-          name: "new_word6"
-        },
-      ];
-    
+      const testData = {
+        id: [
+          "4d5aeb1c-7762-4728-bec9-c7a6987277fc",
+        ]
+      }
+
       await request(app)
-        .post('/word')
+        .delete('/word')
         .type('form')
-        .send(testData)
-        .set('Accept', 'application/json')
-        .expect(200, { message: true })
+        .send(qs.stringify(testData, { arrayFormat: 'index' }))
+        .set('Accept', 'application/x-www-form-urlencoded')
+        .expect(200, { isOk: true })
     });
   });
 });
