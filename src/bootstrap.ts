@@ -27,6 +27,7 @@ import "./Interface/Controllers/WordController";
 let server = new InversifyExpressServer(container);
 server.setConfig((app) => {
   // add body parser
+  //  - means you don't need to parse json string to object using JSON.parse
   app.use(bodyParser.urlencoded({
     extended: true
   }));

@@ -24,7 +24,7 @@ export default class UserController implements interfaces.Controller {
 
   @httpPost("/:username/word", oauth.authenticate())
   private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
-    const isOk = await this._userService.upsertWordsOfUser(req.params.username, JSON.parse(req.body));
+    const isOk = await this._userService.upsertWordsOfUser(req.params.username, req.body);
     isOk ? res.status(200).json({ message: "upsert is completed" }) : res.status(409).json({ message: "upsert is NOT completed" });
   }
 
