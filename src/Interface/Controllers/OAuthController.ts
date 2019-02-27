@@ -2,6 +2,7 @@ import * as express from 'express';
 import { interfaces, controller, httpPost } from "inversify-express-utils";
 import { inject } from "inversify";
 import oauth from '../Services/oauthUtil';
+import AccessToken from '../../Framework/DataEntities/AccessToken';
 
 @controller("/oauth")
 export default class OAuthController implements interfaces.Controller {
@@ -16,6 +17,17 @@ export default class OAuthController implements interfaces.Controller {
     // if i can modify oauth.token() method, the best solution to set access token in cookie is to set it here in server side with httpOnly flag so client side never touch access token cookie which increase security
     // however, i don't know how to modify the oauth.token() function so install cookie libaray in react and set access token sent from here then save it in cookie with httpOnly flag (this is the second option)
     // don't need to implement this function
+  }
+
+  /**
+   * revoke token  
+   *   - delete the row to invalidate access tokena and refresh token 
+   **/
+  @httpPost("/token/revoke")
+  private async index(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+    // find refresh token and delete the row
+    const deletedRow = await AccessToken.destroy({ where: { refresh_token: req.body.refreshToken }})
+    deletedRow ? res.status(200).json({ message: "completed" }) : res.status(409).json({ message: "not completed" });
   }
 }
 
