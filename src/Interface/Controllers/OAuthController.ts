@@ -2,7 +2,7 @@ import * as express from 'express';
 import { interfaces, controller, httpPost } from "inversify-express-utils";
 import { inject } from "inversify";
 import oauth from '../Services/oauthUtil';
-import AccessToken from '../../Framework/DataEntities/AccessToken';
+import AccessToken from '../../Framework/Infrastructure/DataEntities/AccessToken';
 
 @controller("/oauth")
 export default class OAuthController implements interfaces.Controller {
@@ -23,10 +23,10 @@ export default class OAuthController implements interfaces.Controller {
    * revoke token  
    *   - delete the row to invalidate access tokena and refresh token 
    **/
-  @httpPost("/token/revoke")
-  private async index(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+  @httpPost("/revoke")
+  private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
     // find refresh token and delete the row
-    const deletedRow = await AccessToken.destroy({ where: { refresh_token: req.body.refreshToken }})
+    const deletedRow = await AccessToken.destroy({ where: { refreshToken: req.body.refreshToken }})
     deletedRow ? res.status(200).json({ message: "completed" }) : res.status(409).json({ message: "not completed" });
   }
 }
