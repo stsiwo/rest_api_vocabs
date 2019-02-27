@@ -10,7 +10,7 @@ import IWord from '../../Domain/Word';
  **/
 export default interface IWordRepository {
 
-  //bulkUpsert: ( words: IWord[] ) => Promise<boolean>;
+  deleteWords: ( words: string[] ) => Promise<boolean>;
 
 }
 

@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { interfaces, controller, httpPost } from "inversify-express-utils";
+import { interfaces, controller, httpPost, httpDelete } from "inversify-express-utils";
 import { inject } from "inversify";
 import TYPES from '../../type';
 import IWordService from '../../UseCase/IServices/IWordService';
@@ -16,11 +16,11 @@ export default class WordController implements interfaces.Controller {
     this._wordService = wordService;
   }
 
-  //@httpPost("/", oauth.authenticate())
-  //private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
-    //const isOk = await this._wordService.bulkUpsert(req.body);
-    //isOk ? res.status(200).json({ message: "upsert is completed" }) : res.status(409).json({ message: "upsert is NOT completed" });
-  //}
+  @httpDelete("/", oauth.authenticate())
+  private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+    const isOk = await this._wordService.deleteWords(req.body);
+    isOk ? res.status(200).json({ isOk: true }) : res.status(409).json({ isOk: false});
+  }
 }
 
 

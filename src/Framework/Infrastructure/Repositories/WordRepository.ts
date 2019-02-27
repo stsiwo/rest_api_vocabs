@@ -15,7 +15,8 @@ export default class WordRepository implements IWordRepository {
     this._word = Word;
   }
 
-  //public async bulkUpsert( words: IWord[] ): Promise<boolean> {
-  //}
+  public async deleteWords( words: string[] ): Promise<boolean> {
+    this._word.destroy({ where: { id: words }});
+  }
 }
 
