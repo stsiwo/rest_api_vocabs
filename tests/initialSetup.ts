@@ -71,6 +71,10 @@ sequelize.sync({ force: true }).then(() => {
     truncate: true
   });
 
+  // sequelize raw query for create Dictionary table and import csv file
+  // problem: can't user relative path
+  // #REFACTOR if there is a way to do relatively
+  sequelize.query('COPY "Dictionary"(word) FROM \'C:\\tmp\\dictionary.csv\' DELIMITER \',\' CSV HEADER');
 
 });
 

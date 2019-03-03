@@ -22,6 +22,7 @@ const corsOptions = {
 import "./Interface/Controllers/UserController";
 import "./Interface/Controllers/OAuthController";
 import "./Interface/Controllers/WordController";
+import "./Interface/Controllers/DictionaryController";
 
 // create server
 let server = new InversifyExpressServer(container);
