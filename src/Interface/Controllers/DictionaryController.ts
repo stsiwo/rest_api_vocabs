@@ -18,8 +18,8 @@ export default class DictionaryController implements interfaces.Controller {
 
   @httpGet("/")
   private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
-    const wordList = await this._dictionaryService.searchWords(req.query.keyWord);
-    res.status(200).json({ wordList: wordList })  
+    const suggestionList = await this._dictionaryService.searchWords(req.query.keyWord);
+    res.status(200).json({ suggestionList: suggestionList })  
   }
 }
 
