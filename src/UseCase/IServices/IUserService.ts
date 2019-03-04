@@ -7,4 +7,6 @@ export default interface IUserService {
 
   upsertWordsOfUser: (userName: string, words: IWord[]) => Promise<boolean>;
 
+  checkUserNameUnique: (name: string) => Promise<boolean>;
+
 }

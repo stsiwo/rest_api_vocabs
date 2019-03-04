@@ -84,4 +84,9 @@ export default class UserRepository implements IUserRepository {
     }); 
   }
 
+  public async checkUserNameUnique(name: string): Promise<boolean> {
+    return this._user.findOne({ where: { name: name }})
+      .then(( user ) => user === null)
+  }
+
 }

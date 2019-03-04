@@ -16,4 +16,6 @@ export default interface IUserRepository {
 
   upsertWordsOfUser: (userName: string, words: IWord[]) => Promise<boolean>;
 
+  checkUserNameUnique: (name: string) => Promise<boolean>;
+
 }

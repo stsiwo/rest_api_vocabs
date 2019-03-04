@@ -16,6 +16,12 @@ export default class UserController implements interfaces.Controller {
     this._userService = userService;
   }
 
+  @httpGet("")
+  private async checkUserNameUnique(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+    const isUnique = await this._userService.checkUserNameUnique(req.params.name);
+    res.status(200).json({ isUnique: isUnique });
+  }
+
   @httpGet("/:username/word", oauth.authenticate())
   private async get(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
     const words = await this._userService.getWordsOfUser(req.params.username);

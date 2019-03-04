@@ -26,6 +26,10 @@ export default class UserService implements IUserService {
   public async upsertWordsOfUser(userName: string, words: IWord[]): Promise<boolean> {
     return this._userRepository.upsertWordsOfUser(userName, words);
   }
+
+  public async checkUserNameUnique(name: string): Promise<boolean> {
+    return this._userRepository.checkUserNameUnique(name);
+  }
 }
 
 

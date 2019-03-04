@@ -39,9 +39,21 @@ describe('UserRepository', function() {
   ];
   const testUserName = "sample_name1";
 
-  it('get all Users', async function() {
+  it('upsert words of user', async function() {
     const isOk = await userRepo.upsertWordsOfUser(testUserName, testData);
     expect(isOk).toEqual(true);
+  });
+
+  it('check user name is unique; should return true', async function() {
+    const testUserName = "stupid";
+    const isUnique = await userRepo.checkUserNameUnique(testUserName);
+    expect(isUnique).toEqual(true);
+  });
+
+  it('check user name is unique; should return false', async function() {
+    const testUserName = "sample_name1";
+    const isUnique = await userRepo.checkUserNameUnique(testUserName);
+    expect(isUnique).toEqual(false);
   });
 });
 
