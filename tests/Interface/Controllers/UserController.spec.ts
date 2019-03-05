@@ -2,6 +2,9 @@ import app from '../../../src/bootstrap';
 import request from 'supertest';
 import { Response } from 'superagent';
 
+/**
+ * need to find the way to clean up (possibly transaction and rollback after testing) the test data in database
+ **/
 describe('UserController', function() {
 
   describe('index', function() {
@@ -17,14 +20,14 @@ describe('UserController', function() {
 
     it('check user name is unique; should return true', async function() {
       const testParam = 'stupid';
-      request(app)
+      await request(app)
         .get(`/user/name?name=${ testParam }`)
         .expect(200, { isUnique: true})
     });
 
     it('check user name is unique; should return false', async function() {
       const testParam = 'sample_name1';
-      request(app)
+      await request(app)
         .get(`/user/name?name=${ testParam }`)
         .expect(200, { isUnique: false})
     });
@@ -34,17 +37,33 @@ describe('UserController', function() {
 
     it('check user email already exists; should return true', async function() {
       const testParam = 'sample@sample_email1.com';
-      request(app)
+      await request(app)
         .get(`/user/email?email=${ testParam }`)
         .expect(200, { isAlreadyExists: true})
     });
 
     it('check user email already exists; should return false', async function() {
       const testParam = 'stupid@stupid.com';
-      request(app)
+      await request(app)
         .get(`/user/email?email=${ testParam }`)
         .expect(200, { isAlreadyExists: false})
     });
+  });
+
+  describe('POST /user', function() {
+     
+    const testUser = { name: "test_user", email: "test@test.com", password: "my_password" };
+
+    it('create new user', async function() {
+
+      await request(app)
+        .post(`/user`)
+        .type('form')
+        .send(testUser)
+        .set('Accept', 'application/x-www-form-urlencoded')
+        .expect(200, { isSignUpCompleted: true})
+    });
+
   });
 });
 

@@ -57,7 +57,8 @@ export default class UserController implements interfaces.Controller {
    * request for signup
    **/
   @httpPost("/")
-  private async signup(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+  private async signUp(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+    console.log(req.body);
     const isSignUpCompleted = await this._userService.signUp(req.body.name, req.body.email, req.body.password);
     isSignUpCompleted ? res.status(200).json({ isSignUpCompleted: true }) : res.status(409).json({ isSignUpCompleted: false });
   }
