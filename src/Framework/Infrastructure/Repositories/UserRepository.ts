@@ -89,4 +89,13 @@ export default class UserRepository implements IUserRepository {
       .then(( user ) => user === null)
   }
 
+  public async checkEmailAlreadyExist(email: string): Promise<boolean> {
+    return this._user.findOne({ where: { email: email }})
+      .then(( user ) => user !== null)
+  }
+
+  public async signUp(name: string, email: string, password: string): Promise<boolean> {
+    return this._user.create({ name: name, email: email, password: password })
+      .then(() => true).catch(() => false);
+  }
 }

@@ -30,6 +30,14 @@ export default class UserService implements IUserService {
   public async checkUserNameUnique(name: string): Promise<boolean> {
     return this._userRepository.checkUserNameUnique(name);
   }
+
+  public async checkEmailAlreadyExist(email: string): Promise<boolean> {
+    return this._userRepository.checkEmailAlreadyExist(email);
+  }
+
+  public async signUp(name: string, email: string, password: string): Promise<boolean> {
+    return this._userRepository.signUp(name, email, password);
+  }
 }
 
 

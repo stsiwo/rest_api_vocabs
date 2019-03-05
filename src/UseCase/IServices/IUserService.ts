@@ -9,4 +9,7 @@ export default interface IUserService {
 
   checkUserNameUnique: (name: string) => Promise<boolean>;
 
+  checkEmailAlreadyExist: (email: string) => Promise<boolean>;
+
+  signUp: (name: string, email: string, password: string) => Promise<boolean>;
 }

@@ -55,5 +55,17 @@ describe('UserRepository', function() {
     const isUnique = await userRepo.checkUserNameUnique(testUserName);
     expect(isUnique).toEqual(false);
   });
+
+  it('check email already exists: should return true', async function() {
+    const testEmail = "sample@sample_email1.com";
+    const isAlreadyExists = await userRepo.checkEmailAlreadyExist(testEmail);
+    expect(isAlreadyExists).toEqual(true);
+  });
+
+  it('check email already exists: should return false', async function() {
+    const testEmail = "stupid@stupid.com";
+    const isAlreadyExists = await userRepo.checkEmailAlreadyExist(testEmail);
+    expect(isAlreadyExists).toEqual(false);
+  });
 });
 

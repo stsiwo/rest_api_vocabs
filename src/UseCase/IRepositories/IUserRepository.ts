@@ -18,4 +18,8 @@ export default interface IUserRepository {
 
   checkUserNameUnique: (name: string) => Promise<boolean>;
 
+  checkEmailAlreadyExist: (email: string) => Promise<boolean>;
+
+  signUp: (name: string, email: string, password: string) => Promise<boolean>;
+
 }
