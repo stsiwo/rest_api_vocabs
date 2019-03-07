@@ -4,6 +4,9 @@ import { inject } from "inversify";
 import TYPES from '../../type';
 import IUserService from '../../UseCase/IServices/IUserService';
 import oauth from '../Services/oauthUtil';
+import multer from 'multer';
+import path from 'path';
+const upload = multer({ dest: path.join(__dirname, '/images') });
 
 @controller("/user")
 export default class UserController implements interfaces.Controller {
@@ -46,9 +49,11 @@ export default class UserController implements interfaces.Controller {
   /**
    * request for upsert new or editted words of a specific user
    **/
-  @httpPost("/:username/word", oauth.authenticate())
+  @httpPost("/:username/word", oauth.authenticate(), upload.any())
   private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
-    const isOk = await this._userService.upsertWordsOfUser(req.params.username, req.body);
+    console.log(req.files);
+    console.log(req.body);
+    const isOk = await this._userService.upsertWordsOfUser(req.params.username, req.body.formData);
     isOk ? res.status(200).json({ message: "upsert is completed" }) : res.status(409).json({ message: "upsert is NOT completed" });
   }
 
@@ -58,7 +63,7 @@ export default class UserController implements interfaces.Controller {
    **/
   @httpPost("/")
   private async signUp(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
-    console.log(req.body);
+    console.log(JSON.parse(JSON.stringify(req.body)));
     const isSignUpCompleted = await this._userService.signUp(req.body.name, req.body.email, req.body.password);
     isSignUpCompleted ? res.status(200).json({ isSignUpCompleted: true }) : res.status(409).json({ isSignUpCompleted: false });
   }

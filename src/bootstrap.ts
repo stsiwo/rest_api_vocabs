@@ -12,10 +12,8 @@ const corsOptions = {
   // when credentialed request, you need to specify the origin rather than "*"
   origin: 'http://localhost:8080',
   allowedHeaders: [ 'Content-Type', "Authorization" ],
-  // this one is for client's credential is "include"
-  credentials: true,
+  //credentials: true, // Access-Control-Allow-Credential: expect cookie to include in request
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  
 }
 
 // declare metadata by @controller annotation
