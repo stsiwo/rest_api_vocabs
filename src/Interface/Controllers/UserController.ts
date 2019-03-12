@@ -1,11 +1,12 @@
 import * as express from 'express';
-import { interfaces, controller, httpGet, httpPost } from "inversify-express-utils";
+import { interfaces, controller, httpGet, httpPost, httpDelete } from "inversify-express-utils";
 import { inject } from "inversify";
 import TYPES from '../../type';
 import IUserService from '../../UseCase/IServices/IUserService';
 import oauth from '../Services/oauthUtil';
 import multer from 'multer';
 import path from 'path';
+import { IDef } from '../../Domain/Def';
 const upload = multer({ dest: path.join(__dirname, '/images') });
 
 @controller("/user")
@@ -49,14 +50,24 @@ export default class UserController implements interfaces.Controller {
   /**
    * request for upsert new or editted words of a specific user
    **/
-  @httpPost("/:username/word", oauth.authenticate(), upload.any())
+  @httpPost("/:username/word", oauth.authenticate()/*, upload.any()*/)
   private async post(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
-    console.log(req.files);
-    console.log(req.body);
-    const isOk = await this._userService.upsertWordsOfUser(req.params.username, req.body.formData);
+    const isOk = await this._userService.upsertWordsOfUser(req.params.username, req.body);
     isOk ? res.status(200).json({ message: "upsert is completed" }) : res.status(409).json({ message: "upsert is NOT completed" });
   }
 
+  /**
+   * request for upsert new or editted words of a specific user
+   **/
+  @httpDelete("/:username/image", oauth.authenticate()/*, upload.any()*/)
+  private async deleteImagesOfUser(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
+    console.log(req.body);
+    // extract image storage url of each def
+    const storageDirectory: string[] = req.body.map(( def: IDef ) => def.image.match(`/(${ req.params.username }\/.*)/`)[1]);
+
+    const isOk = await this._userService.deleteImagesOfUser(req.params.username, storageDirectory);
+    isOk ? res.status(200).json({ message: "deletion is completed" }) : res.status(409).json({ message: "deletion is NOT completed" });
+  }
 
   /**
    * request for signup

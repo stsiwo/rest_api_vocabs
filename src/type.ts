@@ -10,6 +10,9 @@ const TYPES = {
   // Dictionary
   IDictionaryService: Symbol.for("IDictionaryService"),
   IDictionaryRepository: Symbol.for("IDictionaryRepository"),
+
+  // cloudinary api 
+  ICloudinaryAPI: Symbol.for("ICloudinaryAPI"),
 }
 
 export default TYPES;

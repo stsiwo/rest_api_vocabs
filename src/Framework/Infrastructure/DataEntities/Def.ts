@@ -19,7 +19,7 @@ export default class Def extends Model<Def> {
   @Column(Sequelize.STRING)
   def: string;
 
-  @Column(Sequelize.BLOB)
+  @Column(Sequelize.STRING)
   image: string;
 
   @ForeignKey(() => Pos)

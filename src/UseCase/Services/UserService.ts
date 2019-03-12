@@ -2,17 +2,23 @@ import { injectable, inject } from "inversify";
 import TYPES from '../../type';
 import IUserService from '../IServices/IUserService';
 import IUserRepository from '../IRepositories/IUserRepository'; 
+import ICloudinaryAPI from '../IAPIs/ICloudinaryAPI'; 
 import IWord from '../../Domain/Word';
+
 
 @injectable()
 export default class UserService implements IUserService {
 
   private _userRepository: IUserRepository;
 
+  private _cloudinaryApi: ICloudinaryAPI;
+
   public constructor(
-    @inject(TYPES.IUserRepository) userRepository: IUserRepository
+    @inject(TYPES.IUserRepository) userRepository: IUserRepository,
+    @inject(TYPES.ICloudinaryAPI) cloudinaryApi: ICloudinaryAPI
   ) {
     this._userRepository = userRepository;
+    this._cloudinaryApi = cloudinaryApi;
   }
 
   public getUsers(): string {
@@ -25,6 +31,10 @@ export default class UserService implements IUserService {
 
   public async upsertWordsOfUser(userName: string, words: IWord[]): Promise<boolean> {
     return this._userRepository.upsertWordsOfUser(userName, words);
+  }
+
+  public async deleteImagesOfUser(userName: string, urls: string[]): Promise<boolean> {
+    return this._cloudinaryApi.deleteImagesOfUser(userName, urls);
   }
 
   public async checkUserNameUnique(name: string): Promise<boolean> {

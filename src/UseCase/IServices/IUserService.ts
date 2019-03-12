@@ -11,5 +11,7 @@ export default interface IUserService {
 
   checkEmailAlreadyExist: (email: string) => Promise<boolean>;
 
+  deleteImagesOfUser: (userName: string, urls: string[]) => Promise<boolean>;
+
   signUp: (name: string, email: string, password: string) => Promise<boolean>;
 }

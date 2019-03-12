@@ -22,6 +22,12 @@ import UserRepository from './Framework/Infrastructure/Repositories/UserReposito
 import WordRepository from './Framework/Infrastructure/Repositories/WordRepository';
 import DictionaryRepository from './Framework/Infrastructure/Repositories/DictionaryRepository';
 
+// IAPIs
+import ICloudinaryAPI from './UseCase/IAPIs/ICloudinaryAPI';
+
+// API
+import CloudinaryAPI from './Framework/APIs/CloudinaryAPI';
+
 // Model
 
 import TYPES from './type';
@@ -45,6 +51,10 @@ container.bind<IWordRepository>(TYPES.IWordRepository).to(WordRepository);
 //  - Dictionary
 container.bind<IDictionaryService>(TYPES.IDictionaryService).to(DictionaryService);
 container.bind<IDictionaryRepository>(TYPES.IDictionaryRepository).to(DictionaryRepository);
+
+//  - API
+container.bind<ICloudinaryAPI>(TYPES.ICloudinaryAPI).to(CloudinaryAPI);
+
 /**
  * DI for Model (from sequelize-typescript) to Repository's constructor
  *  - because model is third party abstract class so I had use "decorate" to explicitly declare the "injectable" but it seems not to work for me, so for now, I directly assign Model dependency to Repository

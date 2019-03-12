@@ -44,7 +44,7 @@
     "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
-    // "typeRoots": [],                       /* List of folders to include type definitions from. */
+    // "typeRoots": ["./src/type"],                       /* List of folders to include type definitions from. */
     "types": ["reflect-metadata", "jest", "node"],                           /* Type declaration files to be included in compilation. */
     /* need to put "jest" in order to make jest work: error  Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i @types/jest` or `npm i @types
 /mocha`  and then add `jest` or `mocha` to the types field in your tsconfig*/

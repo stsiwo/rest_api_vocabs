@@ -65,6 +65,50 @@ describe('UserController', function() {
     });
 
   });
+
+  describe('POST /user/:usrename/image', function() {
+     
+    const testUser = "sample_name1";
+    const testWords = [
+      {
+        id: "5b0b81b0-de6e-44a4-9847-b44c5cdbd2de",
+        defs: [
+          {
+            id: "b8f1449e-4da6-46ad-b0d3-e86bb749699f",
+            def: "test_def1",
+            image: "https://.../sample_name1/5b0b81b0-de6e-44a4-9847-b44c5cdbd2de/b8f1449e-4da6-46ad-b0d3-e86bb749699f/dssfo2om4nugaokxqp1t",
+            wordId:  "5b0b81b0-de6e-44a4-9847-b44c5cdbd2de",
+          },
+          {
+            id: "bd2c7bf5-df5a-4889-aff5-d604ec7a9773",
+            def: "test_def1",
+            image: "https://.../sample_name1/5b0b81b0-de6e-44a4-9847-b44c5cdbd2de/bd2c7bf5-df5a-4889-aff5-d604ec7a9773/v4forzgshjevmrztxikf",
+            wordId:  "bd2c7bf5-df5a-4889-aff5-d604ec7a9773",
+          },
+          {
+            id: "cd768c9c-8833-4167-b263-ee6610432255",
+            def: "test_def1",
+            image: "https://.../sample_name1/5b0b81b0-de6e-44a4-9847-b44c5cdbd2de/cd768c9c-8833-4167-b263-ee6610432255/ihpovqlscygzpbfbfee0",
+            wordId:  "cd768c9c-8833-4167-b263-ee6610432255",
+          },
+        ],
+        name: "test_word1",
+        creationDate: "string"
+      }
+    ];
+
+    it('create new user', async function() {
+
+      await request(app)
+        .delete(`/user/${ testUser }/image`)
+        .set('Authorization', 'bearer ' + "34c309a0a297a915d0dc30142d8a5232f056df53" )
+        .type('form')
+        .send(testWords)
+        .set('Content-Type', 'application/json')
+        .expect(200, { isOk: true})
+    });
+  });
+
 });
 
 
