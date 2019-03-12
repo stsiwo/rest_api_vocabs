@@ -63,7 +63,14 @@ export default class UserController implements interfaces.Controller {
   private async deleteImagesOfUser(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
     console.log(req.body);
     // extract image storage url of each def
-    const storageDirectory: string[] = req.body.map(( def: IDef ) => def.image.match(`/(${ req.params.username }\/.*)/`)[1]);
+    /**
+     * RegExp class is something different from usually regex
+     *  - esp, need double escape 
+     **/
+    const regex = new RegExp("(" + req.params.username + "\/.*)\\.\\w*$");
+    const storageDirectory: string[] = req.body.map(( def: IDef ) => def.image.match(regex)[1]);
+
+    console.log(storageDirectory);
 
     const isOk = await this._userService.deleteImagesOfUser(req.params.username, storageDirectory);
     isOk ? res.status(200).json({ message: "deletion is completed" }) : res.status(409).json({ message: "deletion is NOT completed" });

@@ -20,8 +20,7 @@ export default class CloudinaryAPI implements ICloudinaryAPI {
   }
 
   public deleteImagesOfUser(userName: string, urls: string[]) {
-    console.log(urls);
-    return Promise.all(urls.map(( url ) => this._cloudinary.v2.uploader.destroy(`${ userName }/${ url }`)))
+    return Promise.all(urls.map(( url ) => this._cloudinary.v2.uploader.destroy(url)))
       .then(( data ) => { console.log(data); return true})
       .catch(() => false);
   }
