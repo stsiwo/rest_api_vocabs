@@ -63,6 +63,12 @@ sequelize.sync({ force: true }).then(() => {
 
         // assign def (id=15,16,17,18,19) to word (id=4)
         words[4].$set('defs', [ defs[15], defs[16], defs[17], defs[18], defs[19] ])
+
+        let defIndex = 19;
+
+        for (let i = 5; i<100; i++) {
+          words[i].$set('defs', [ defs[++defIndex], defs[++defIndex] ]);
+        }
       })
     });
   // clean up AccessToken
