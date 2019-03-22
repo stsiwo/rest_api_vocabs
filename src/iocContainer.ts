@@ -2,6 +2,16 @@
 import "reflect-metadata";
 import { Container, decorate, injectable } from "inversify";
 
+/**
+ * before using @decorators:
+ *  - you need to config .babelrc file like below:
+ *      
+ *   "plugins": [
+ *       [ "@babel/proposal-decorators", { "legacy": true }],
+ *       ...
+ *       ]
+ **/
+
 // IService
 import IUserService from './UseCase/IServices/IUserService'; 
 import IWordService from './UseCase/IServices/IWordService'; 

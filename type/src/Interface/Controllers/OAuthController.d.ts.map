@@ -1,0 +1,1 @@
+{"version":3,"file":"OAuthController.d.ts","sourceRoot":"","sources":["../../../../src/Interface/Controllers/OAuthController.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAwB,MAAM,yBAAyB,CAAC;AAM3E,MAAM,CAAC,OAAO,OAAO,eAAgB,YAAW,UAAU,CAAC,UAAU;IAEnE;;;;QAII;IAEJ,OAAO,CAAC,KAAK;IAOb;;;QAGI;YAEU,IAAI;CAKnB"}

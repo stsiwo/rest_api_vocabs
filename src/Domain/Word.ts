@@ -1,9 +1,9 @@
-import Def from './Def';
+import { IDef } from './Def';
 
 interface IWord {
   id: string;
   name: string;
-  defs: Def[];
+  defs: IDef[];
   creationDate: Date;
   userId?: string;
 }

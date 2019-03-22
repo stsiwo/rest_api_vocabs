@@ -1,0 +1,1 @@
+{"version":3,"file":"DictionaryRepository.d.ts","sourceRoot":"","sources":["../../../../../src/Framework/Infrastructure/Repositories/DictionaryRepository.ts"],"names":[],"mappings":"AACA,OAAO,qBAAqB,MAAM,sDAAsD,CAAC;AAOzF,MAAM,CAAC,OAAO,OAAO,oBAAqB,YAAW,qBAAqB;IAExE,OAAO,CAAC,WAAW,CAAoB;;IAM1B,WAAW,CAAE,OAAO,EAAE,MAAM,GAAI,OAAO,CAAC,MAAM,CAAC;CAY7D"}
