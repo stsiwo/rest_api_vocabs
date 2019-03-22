@@ -1,1 +1,0 @@
-{"version":3,"file":"DictionaryController.d.ts","sourceRoot":"","sources":["../../../../src/Interface/Controllers/DictionaryController.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAuB,MAAM,yBAAyB,CAAC;AAG1E,OAAO,kBAAkB,MAAM,4CAA4C,CAAC;AAI5E,MAAM,CAAC,OAAO,OAAO,oBAAqB,YAAW,UAAU,CAAC,UAAU;IAExE,OAAO,CAAC,kBAAkB,CAAqB;gBAGX,iBAAiB,EAAE,kBAAkB;YAM3D,IAAI;CAInB"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"WordController.d.ts","sourceRoot":"","sources":["../../../../src/Interface/Controllers/WordController.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAoC,MAAM,yBAAyB,CAAC;AAGvF,OAAO,YAAY,MAAM,sCAAsC,CAAC;AAOhE,MAAM,CAAC,OAAO,OAAO,cAAe,YAAW,UAAU,CAAC,UAAU;IAElE,OAAO,CAAC,YAAY,CAAe;gBAGL,WAAW,EAAE,YAAY;YAMzC,MAAM;YAMN,IAAI;CAInB"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"CloudinaryAPI.d.ts","sourceRoot":"","sources":["../../../../src/Framework/APIs/CloudinaryAPI.ts"],"names":[],"mappings":"AAAA,OAAO,WAAW,CAAC;AAEnB,OAAO,kBAAkB,CAAC;AAC1B,OAAO,cAAc,MAAM,oCAAoC,CAAC;AAKhE,MAAM,CAAC,OAAO,OAAO,aAAc,YAAW,cAAc;IAG1D,OAAO,CAAC,WAAW,CAAmB;;IAU/B,kBAAkB,CAAC,QAAQ,EAAE,MAAM,EAAE,IAAI,EAAE,MAAM,EAAE;CAK3D"}

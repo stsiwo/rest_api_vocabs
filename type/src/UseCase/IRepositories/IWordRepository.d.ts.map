@@ -1,1 +1,0 @@
-{"version":3,"file":"IWordRepository.d.ts","sourceRoot":"","sources":["../../../../src/UseCase/IRepositories/IWordRepository.ts"],"names":[],"mappings":"AACA;;;;;;;;IAQI;AACJ,MAAM,CAAC,OAAO,WAAW,eAAe;IAEtC,WAAW,EAAE,CAAE,KAAK,EAAE,MAAM,EAAE,KAAM,OAAO,CAAC,OAAO,CAAC,CAAC;CAEtD"}
