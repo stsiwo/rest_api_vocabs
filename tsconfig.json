@@ -31,7 +31,7 @@
       "cloudinary": [ "src/@types/cloudinary" ]
     },
     "experimentalDecorators": true,        
-    "emitDecoratorMetadata": true,         
+    "emitDecoratorMetadata": true         
   },
   "include": [
     "src/*",
