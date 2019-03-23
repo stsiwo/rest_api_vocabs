@@ -1,4 +1,5 @@
 import { injectable, inject } from "inversify";
+import "reflect-metadata";
 import TYPES from '../../type';
 import IUserService from '../IServices/IUserService';
 import IUserRepository from '../IRepositories/IUserRepository'; 
