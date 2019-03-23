@@ -1,4 +1,5 @@
 import * as express from 'express';
+import "reflect-metadata";
 import { interfaces, controller, httpGet } from "inversify-express-utils";
 import { inject } from "inversify";
 import TYPES from '../../type';

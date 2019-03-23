@@ -1,4 +1,5 @@
 import { injectable, inject } from 'inversify';
+import "reflect-metadata";
 import IUserRepository from '../../../UseCase/IRepositories/IUserRepository';
 import sequelize from '../connection';
 import TYPES from '../../../type';

@@ -1,4 +1,5 @@
 import * as express from 'express';
+import "reflect-metadata";
 import { interfaces, controller, httpPost } from "inversify-express-utils";
 import { inject } from "inversify";
 import oauth from '../Services/oauthUtil';

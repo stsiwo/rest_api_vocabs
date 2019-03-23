@@ -1,4 +1,5 @@
 import { injectable, inject } from 'inversify';
+import "reflect-metadata";
 import IWordRepository from '../../../UseCase/IRepositories/IWordRepository';
 import TYPES from '../../../type';
 import Word from '../DataEntities/Word'

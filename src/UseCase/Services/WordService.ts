@@ -1,4 +1,5 @@
 import { injectable, inject } from "inversify";
+import "reflect-metadata";
 import TYPES from '../../type';
 import IWordService from '../IServices/IWordService';
 import IWordRepository from '../IRepositories/IWordRepository'; 

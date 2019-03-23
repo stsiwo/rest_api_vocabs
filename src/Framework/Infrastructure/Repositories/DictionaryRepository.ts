@@ -1,4 +1,5 @@
 import { injectable, inject } from 'inversify';
+import "reflect-metadata";
 import IDictionaryRepository from '../../../UseCase/IRepositories/IDictionaryRepository';
 import TYPES from '../../../type';
 import Dictionary from '../DataEntities/Dictionary'
