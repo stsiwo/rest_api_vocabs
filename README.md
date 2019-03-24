@@ -14,3 +14,8 @@ RESTful API for vocabs web application
     "paths": {
       "custom-module": [ "path/to/your/custom/type/definiton" ]
     }
+  - babel + typescript + decorators:
+    - after transpile ts files with babel and typescsript (using babel/typescript preset), it complains " function UserService(@(0, _inversify.inject)(_type.default.IUserRepository): SyntaxError: Invalid or unexpected token".
+      - I don't know to fix properly but current walk around is to use typescript and babel separately:
+        1. compile ts file with typescript
+        2. transpile js file with babel
