@@ -3,6 +3,7 @@ import * as bodyParser from 'body-parser';
 import cors from 'cors';
 import container from './iocContainer';
 import { InversifyExpressServer } from 'inversify-express-utils';
+import './env';
 
 // sequelize initialize
 import './Framework/Infrastructure/connection';
@@ -10,7 +11,7 @@ import './Framework/Infrastructure/connection';
 // cors config
 const corsOptions = {
   // when credentialed request, you need to specify the origin rather than "*"
-  origin: 'http://localhost:8080',
+  origin: process.env.CLIENT_VOCABS_URL, 
   allowedHeaders: [ 'Content-Type', "Authorization" ],
   //credentials: true, // Access-Control-Allow-Credential: expect cookie to include in request
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
