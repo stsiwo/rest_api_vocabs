@@ -80,7 +80,10 @@ sequelize.sync({ force: true }).then(() => {
   // sequelize raw query for create Dictionary table and import csv file
   // problem: can't user relative path
   // #REFACTOR if there is a way to do relatively
-  sequelize.query('COPY "Dictionary"(word) FROM \'C:\\tmp\\dictionary.csv\' DELIMITER \',\' CSV HEADER');
+  /**
+   * don't replace with local since this use path of this server
+   **/
+  sequelize.query('COPY "Dictionary"(word) FROM \'/home/ubuntu/workspace/rest_api_vocabs_assets/dictionary.csv\' DELIMITER \',\' CSV HEADER');
 
 });
 

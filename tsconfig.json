@@ -8,7 +8,7 @@
     "declarationDir": "./type",
     "sourceMap": true,                     
     "outDir": "lib",                          
-    "rootDir": "./",                       
+    "rootDir": "./src",                       
     "downlevelIteration": true,            
     "strict": true,                           
     "noImplicitAny": true,                 

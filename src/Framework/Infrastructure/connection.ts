@@ -9,6 +9,8 @@ const dbName: string = process.env.DB_NAME_DEV as string;
 const dbUserName: string = process.env.DB_USER as string;
 const dbPassword: string = process.env.DB_PASSWORD as string;
 
+console.log(dbName);
+
 const sequelize =  new Sequelize({
   database: dbName, 
   dialect: 'postgres',
