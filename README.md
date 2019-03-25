@@ -19,3 +19,7 @@ RESTful API for vocabs web application
       - I don't know to fix properly but current walk around is to use typescript and babel separately:
         1. compile ts file with typescript
         2. transpile js file with babel
+  - postgres "peer authentication" problem
+      - check pg_hba.conf and change "peer" to "md5"
+      - restart postgresql
+      - change "postgres" user's password
