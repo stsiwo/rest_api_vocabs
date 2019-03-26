@@ -23,3 +23,5 @@ RESTful API for vocabs web application
       - check pg_hba.conf and change "peer" to "md5"
       - restart postgresql
       - change "postgres" user's password
+  - pm2 package
+      - using 'watch' option to true might cause restart the process so many time (see in output.log) so avoid using it
