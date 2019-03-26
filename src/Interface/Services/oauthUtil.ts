@@ -83,6 +83,8 @@ const model = {
       throw new Error("there is no such user for the corrsponding access token");
     }
 
+    console.log(user);
+
     return {
       accessToken: accessTokenObject.accessToken,
       accessTokenExpiresAt: accessTokenObject.accessTokenExpiresAt,

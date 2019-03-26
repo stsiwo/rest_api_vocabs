@@ -1,7 +1,21 @@
+# dependencies
 node_modules/
+
+# swp or swo file of vim
 *.swp
 *.swo
+
+# env secret file
 *.env
+
+# type compiled directory
 lib/
+
+# type definition directory
 type/
+
+# babel transpiled directory
 pub/
+
+# log directory
+log/

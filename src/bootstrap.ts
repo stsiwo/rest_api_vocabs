@@ -4,14 +4,16 @@ import cors from 'cors';
 import container from './iocContainer';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import './env';
+const log = require('./customLog')('bootstrap');
 
 // sequelize initialize
 import './Framework/Infrastructure/connection';
 
+const clientOrigin: string = (process.env.NODE_ENV as string) === 'production' ? (process.env.CLIENT_VOCABS_URL_PROD as string) : (process.env.CLIENT_VOCABS_URL_DEV as string);
 // cors config
 const corsOptions = {
   // when credentialed request, you need to specify the origin rather than "*"
-  origin: process.env.CLIENT_VOCABS_URL, 
+  origin: clientOrigin, 
   allowedHeaders: [ 'Content-Type', "Authorization" ],
   //credentials: true, // Access-Control-Allow-Credential: expect cookie to include in request
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
@@ -40,4 +42,6 @@ server.setConfig((app) => {
 const app = server.build();
 export default app;
 
-app.listen(3000, () => { console.log("start listening...") });
+const port: string = (process.env.NODE_ENV as string) === 'production' ? (process.env.VOCABS_API_PORT_PROD as string) : (process.env.VOCABS_API_PORT_DEV as string);
+
+app.listen(port, () => { console.log("start listening...") });
