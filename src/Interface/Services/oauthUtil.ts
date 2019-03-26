@@ -4,6 +4,7 @@ import { User, Client, Token, RefreshToken } from 'oauth2-server';
 // #REFACTOR tag
 import EAccessToken from '../../Framework/Infrastructure/DataEntities/AccessToken'; 
 import EUser from '../../Framework/Infrastructure/DataEntities/User'; 
+const log = require('../../customLog')(__filename);
 
 /**
  * NOTE: OAuth protocol recommends to separate Authroization server and Resource server, but I don't know how to implement this using express-oauth-server because of "oauthenticate()". it resides in Authorization Server ( not Resource Server ); therefore, there is no way to authenticate request in Resource Server.
@@ -70,6 +71,7 @@ const model = {
    * 
    **/
   getAccessToken: async function(accessToken: string): Promise<Token | null> {
+    log.debug("start getAccessToken function");
 
     const accessTokenObject = await EAccessToken.findOne({ where: { accessToken: accessToken }, raw: true });
 
@@ -82,8 +84,6 @@ const model = {
     if ( user === null ) {
       throw new Error("there is no such user for the corrsponding access token");
     }
-
-    console.log(user);
 
     return {
       accessToken: accessTokenObject.accessToken,
@@ -126,13 +126,17 @@ const model = {
    *  - return error means credentials from requst does not match one in database
    **/
   getUser: async function(username: string, password: string): Promise<User | null> {
+    log.debug("getUser function start");
     
     const user = await EUser.findOne({ where: { name: username, password: password }, raw: true});
 
     if ( user === null ) {
+      log.debug("empty user");
       throw new Error("there is no such user to be retrieved");
     }
 
+    log.debug("get user");
+    log.debug(user);
     return user;
   },
 

@@ -77,6 +77,11 @@ sequelize.sync({ force: true }).then(() => {
     truncate: true
   });
 
+  // create fuzzysearchstring extension if does not exit
+  // might run this command when you choose specific database (\c database_name and then run this command) if does not work
+  sequelize.query('CREATE EXTENSION IF NOT EXISTS fuzzystrmatch');
+
+
   // sequelize raw query for create Dictionary table and import csv file
   // problem: can't user relative path
   // #REFACTOR if there is a way to do relatively

@@ -1,13 +1,16 @@
 import "../../env";
 import { Sequelize } from 'sequelize-typescript';
+const log = require('../../customLog')(__filename);
 
 /**
  * since process.env.xxx return string or undefined (union type)
  * so need type gaurd like "as string" or "<string>"
  **/
-const dbName: string = ( process.env.NODE_ENV as string ) = 'production' ? ( process.env.DB_NAME_PROD as string ) : ( process.env.DB_NAME_DEV as string );
+const dbName: string = ( process.env.NODE_ENV as string ) === 'production' ? ( process.env.DB_NAME_PROD as string ) : ( process.env.DB_NAME_DEV as string );
 const dbUserName: string = process.env.DB_USER as string;
 const dbPassword: string = process.env.DB_PASSWORD as string;
+
+log.debug(dbName);
 
 const sequelize =  new Sequelize({
   database: dbName, 
